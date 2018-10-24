@@ -1,0 +1,27 @@
+{% extends 'test_zzxs/base.html' %}
+{% load static %}
+
+{%  block css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{%  endblock %}
+
+{%  block content %}
+    <header class="header">
+        <div class="logo">
+            <span class="big">留言板</span><br>
+			<span class="small">在这里你可以畅所欲言，没人知道你是谁~~</span>
+        </div>
+        <a href="{% url 'write' %}" class="write">留言</a>
+    </header>
+    <div class="container">
+        <ul>
+            {% for post in object_list %}
+                <li class="post">
+				    <p class="name">{{post.date|date:'Y/m/d H:i'}}</p>
+                    <p class="content">{{ post.text }}</p>
+					<p class="name">---by {{ post.name }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
